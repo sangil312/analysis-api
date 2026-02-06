@@ -1,0 +1,37 @@
+spring:
+  application:
+    name: analysis
+  servlet:
+    multipart:
+      max-file-size: 50MB
+      max-request-size: 50MB
+
+ipinfo:
+  base-url: https://api.ipinfo.io/lite
+  token: ${IPINFO_TOKEN:}
+  retry-count: 1
+  retry-delay-millis: 500
+  cache-ttl: 24h
+  cache-maximum-size: 100000
+
+logging:
+  level:
+    com.dev.analysis: INFO
+
+resilience4j:
+  circuitbreaker:
+    instances:
+      externalApi:
+        sliding-window-type: COUNT_BASED
+        sliding-window-size: 10
+        minimum-number-of-calls: 10
+        failure-rate-threshold: 50
+        wait-duration-in-open-state: 5s
+        permitted-number-of-calls-in-half-open-state: 3
+        automatic-transition-from-open-to-half-open-enabled: true
+
+---
+spring.config.activate.on-profile: local
+
+---
+spring.config.activate.on-profile: prod
