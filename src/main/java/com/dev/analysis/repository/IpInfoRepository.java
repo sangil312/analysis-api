@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface IpInfoRepository {
     void saveAll(List<IpInfo> ipInfo);
+    List<IpInfo> findByAnalysisId(Long analysisId);
 }

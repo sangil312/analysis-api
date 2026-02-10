@@ -3,6 +3,7 @@ package com.dev.analysis.repository;
 import com.dev.analysis.domain.accesslog.AccessLogAnalysis;
 import org.springframework.stereotype.Component;
 
+import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicLong;
 
@@ -17,5 +18,11 @@ public class AccessLogAnalysisInMemoryRepository implements AccessLogAnalysisRep
         storage.put(analysisId, accessLogAnalysis);
         accessLogAnalysis.saved(analysisId);
         return accessLogAnalysis;
+    }
+
+    @Override
+    public Optional<AccessLogAnalysis> findById(Long id) {
+        AccessLogAnalysis accessLogAnalysis = storage.get(id);
+        return accessLogAnalysis == null ? Optional.empty() : Optional.of(accessLogAnalysis);
     }
 }

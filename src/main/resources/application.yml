@@ -1,10 +1,16 @@
 spring:
   application:
     name: analysis
+
   servlet:
     multipart:
       max-file-size: 50MB
       max-request-size: 50MB
+
+  cloud:
+    circuitbreaker:
+      resilience4j:
+        disable-time-limiter: true
 
 ipinfo:
   base-url: https://api.ipinfo.io/lite

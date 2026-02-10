@@ -1,7 +1,7 @@
 package com.dev.analysis.client.dto;
 
-import com.dev.analysis.service.ipinfo.dto.IpInfoData;
-import org.springframework.util.StringUtils;
+import com.dev.analysis.application.service.ipinfo.dto.IpInfoData;
+import com.dev.analysis.enums.ValueType;
 
 public record IpInfoResult(
         String country,
@@ -11,18 +11,19 @@ public record IpInfoResult(
 ) {
     public IpInfoData toIpInfoData() {
         return new IpInfoData(
-                valueOrUnknown(this.country),
-                valueOrUnknown(this.continent),
-                valueOrUnknown(this.asn),
-                valueOrUnknown(this.as_name)
+                ValueType.valueOrUnknown(country),
+                ValueType.valueOrUnknown(continent),
+                ValueType.valueOrUnknown(asn),
+                ValueType.valueOrUnknown(as_name)
         );
     }
 
     public static IpInfoResult unknown() {
-        return new IpInfoResult("UNKNOWN", "UNKNOWN", "UNKNOWN", "UNKNOWN");
-    }
-
-    private String valueOrUnknown(String value) {
-        return StringUtils.hasText(value) ? value : "UNKNOWN";
+        return new IpInfoResult(
+                ValueType.UNKNOWN.name(),
+                ValueType.UNKNOWN.name(),
+                ValueType.UNKNOWN.name(),
+                ValueType.UNKNOWN.name()
+        );
     }
 }

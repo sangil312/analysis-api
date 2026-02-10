@@ -1,4 +1,4 @@
-package com.dev.analysis.service.accesslog;
+package com.dev.analysis.application.service.accesslog;
 
 import com.dev.analysis.support.error.ApiException;
 import com.dev.analysis.support.error.ErrorType;

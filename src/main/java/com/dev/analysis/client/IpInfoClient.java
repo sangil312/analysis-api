@@ -2,8 +2,8 @@ package com.dev.analysis.client;
 
 import com.dev.analysis.client.dto.IpInfoResult;
 import com.dev.analysis.config.IpInfoProperties;
-import com.dev.analysis.service.ipinfo.IpInfoPort;
-import com.dev.analysis.service.ipinfo.dto.IpInfoData;
+import com.dev.analysis.application.service.ipinfo.IpInfoPort;
+import com.dev.analysis.application.service.ipinfo.dto.IpInfoData;
 import com.github.benmanes.caffeine.cache.Cache;
 import io.netty.channel.ConnectTimeoutException;
 import lombok.RequiredArgsConstructor;

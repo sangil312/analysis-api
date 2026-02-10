@@ -1,6 +1,6 @@
 package com.dev.analysis.config;
 
-import com.dev.analysis.service.ipinfo.dto.IpInfoData;
+import com.dev.analysis.application.service.ipinfo.dto.IpInfoData;
 import com.github.benmanes.caffeine.cache.Cache;
 import com.github.benmanes.caffeine.cache.Caffeine;
 import org.springframework.context.annotation.Bean;

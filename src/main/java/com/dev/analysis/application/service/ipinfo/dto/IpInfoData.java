@@ -1,4 +1,4 @@
-package com.dev.analysis.service.ipinfo.dto;
+package com.dev.analysis.application.service.ipinfo.dto;
 
 public record IpInfoData(
         String country,
