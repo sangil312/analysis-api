@@ -1,4 +1,4 @@
-package com.dev.analysis.config;
+package com.dev.analysis.api.config;
 
 import com.dev.analysis.support.error.ApiException;
 import lombok.extern.slf4j.Slf4j;

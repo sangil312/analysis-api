@@ -1,6 +1,5 @@
 package com.dev.analysis.support.error;
 
-
 public record ErrorResponse(
         int statusCode,
         String message

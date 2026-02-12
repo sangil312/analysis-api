@@ -32,6 +32,13 @@ resilience4j:
         permitted-number-of-calls-in-half-open-state: 3
         automatic-transition-from-open-to-half-open-enabled: true
 
+springdoc:
+  packages-to-scan: com.dev.analysis.api
+  default-consumes-media-type: application/json
+  default-produces-media-type: application/json
+  swagger-ui:
+    path: /swagger-ui
+
 ---
 spring.config.activate.on-profile: local
 logging.level.com.dev.analysis: DEBUG

@@ -1,4 +1,4 @@
-package com.dev.analysis.config;
+package com.dev.analysis.client.config;
 
 import io.netty.channel.ChannelOption;
 import io.netty.handler.timeout.ReadTimeoutHandler;

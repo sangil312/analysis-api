@@ -1,4 +1,4 @@
-package com.dev.analysis.config;
+package com.dev.analysis.api.config;
 
 import org.jspecify.annotations.Nullable;
 import org.springframework.aop.interceptor.AsyncUncaughtExceptionHandler;
