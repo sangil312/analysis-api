@@ -11,14 +11,13 @@ import java.util.List;
 public class AccessLogAnalysis {
     private Long id;
     private Long totalRequestCount;
-    private Double successCount;
-    private Double redirectCount;
-    private Double clientErrorCount;
-    private Double serverErrorCount;
-    private Long parseErrorCount;
-    private List<String> parseErrorSamples;
+    private Double successRatio;
+    private Double redirectRatio;
+    private Double clientErrorRatio;
+    private Double serverErrorRatio;
+    private ParseError parseError;
     private List<TopIp> topIps;
-    private List<TopPath> topPaths;
+    private List<TopRequestUri> topRequestUris;
     private List<TopStatusCode> topStatusCodes;
 
     public static AccessLogAnalysis create(
@@ -27,22 +26,20 @@ public class AccessLogAnalysis {
         Long redirectCount,
         Long clientServerCount,
         Long serverErrorCount,
-        Long parseErrorCount,
-        List<String> parseErrorSamples,
+        ParseError parseError,
         List<TopIp> topIps,
-        List<TopPath> topPaths,
+        List<TopRequestUri> topRequestUris,
         List<TopStatusCode> topStatusCodes
     ) {
         AccessLogAnalysis accessLogAnalysis = new AccessLogAnalysis();
         accessLogAnalysis.totalRequestCount = totalRequestCount;
-        accessLogAnalysis.successCount = toRatio(successCount, totalRequestCount);
-        accessLogAnalysis.redirectCount = toRatio(redirectCount, totalRequestCount);
-        accessLogAnalysis.clientErrorCount = toRatio(clientServerCount, totalRequestCount);
-        accessLogAnalysis.serverErrorCount = toRatio(serverErrorCount, totalRequestCount);
-        accessLogAnalysis.parseErrorCount = parseErrorCount;
-        accessLogAnalysis.parseErrorSamples = parseErrorSamples;
+        accessLogAnalysis.successRatio = toRatio(successCount, totalRequestCount);
+        accessLogAnalysis.redirectRatio = toRatio(redirectCount, totalRequestCount);
+        accessLogAnalysis.clientErrorRatio = toRatio(clientServerCount, totalRequestCount);
+        accessLogAnalysis.serverErrorRatio = toRatio(serverErrorCount, totalRequestCount);
+        accessLogAnalysis.parseError = parseError;
         accessLogAnalysis.topIps = topIps;
-        accessLogAnalysis.topPaths = topPaths;
+        accessLogAnalysis.topRequestUris = topRequestUris;
         accessLogAnalysis.topStatusCodes = topStatusCodes;
         return accessLogAnalysis;
     }

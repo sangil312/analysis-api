@@ -15,4 +15,10 @@ public class IpInfoInMemoryRepository implements IpInfoRepository {
         Long analysisId = ipInfos.getFirst().getAnalysisId();
         storage.put(analysisId, ipInfos);
     }
+
+    @Override
+    public List<IpInfo> findByAnalysisId(Long analysisId) {
+        List<IpInfo> ipInfos = storage.get(analysisId);
+        return ipInfos == null ? List.of() : ipInfos;
+    }
 }

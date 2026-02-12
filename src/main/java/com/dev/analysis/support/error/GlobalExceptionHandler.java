@@ -1,6 +1,6 @@
 package com.dev.analysis.support.error;
 
-import com.dev.analysis.controller.v1.response.ApiResponse;
+import com.dev.analysis.controller.response.ApiResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;

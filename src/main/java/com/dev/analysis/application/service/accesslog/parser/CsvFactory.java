@@ -1,4 +1,4 @@
-package com.dev.analysis.parser;
+package com.dev.analysis.application.service.accesslog.parser;
 
 import com.opencsv.bean.CsvToBean;
 import com.opencsv.bean.CsvToBeanBuilder;

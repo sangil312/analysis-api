@@ -1,4 +1,4 @@
-package com.dev.analysis.service.accesslog.dto;
+package com.dev.analysis.application.service.accesslog.dto;
 
 import lombok.Getter;
 import org.springframework.http.HttpStatus;
@@ -10,10 +10,9 @@ import java.util.Map;
 import java.util.Objects;
 
 @Getter
-public class AccessLogParseResult {
-    private final int maxParseErrorSamples;
-    private final Map<String, Long> pathCount = new HashMap<>();
-    private final Map<Integer, Long> statusCount = new HashMap<>();
+public final class AccessLogParseResult {
+    private final Map<String, Long> requestUriCount = new HashMap<>();
+    private final Map<Integer, Long> statusCodeCount = new HashMap<>();
     private final Map<String, Long> ipCount = new HashMap<>();
     private final List<String> parseErrorSamples = new ArrayList<>();
     private long totalRequests;
@@ -23,14 +22,10 @@ public class AccessLogParseResult {
     private long server5xx;
     private long parseErrorCount;
 
-    public AccessLogParseResult(int maxParseErrorSamples) {
-        this.maxParseErrorSamples = maxParseErrorSamples;
-    }
-
     public void addParseResult(String clientIp, String requestUri, Integer statusCode) {
         totalRequests++;
-        pathCount.merge(requestUri, 1L, Long::sum);
-        statusCount.merge(statusCode, 1L, Long::sum);
+        requestUriCount.merge(requestUri, 1L, Long::sum);
+        statusCodeCount.merge(statusCode, 1L, Long::sum);
         ipCount.merge(clientIp, 1L, Long::sum);
 
         HttpStatus httpStatus = Objects.requireNonNull(HttpStatus.resolve(statusCode));
@@ -52,7 +47,7 @@ public class AccessLogParseResult {
     public void addParseError(long lineNo, String reason) {
         totalRequests++;
         parseErrorCount++;
-        if (parseErrorSamples.size() < maxParseErrorSamples) {
+        if (parseErrorSamples.size() < 5) {
             parseErrorSamples.add("line: " + lineNo + ", reason: " + reason);
         }
     }

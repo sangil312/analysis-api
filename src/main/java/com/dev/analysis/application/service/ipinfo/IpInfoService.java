@@ -1,9 +1,9 @@
-package com.dev.analysis.service.ipinfo;
+package com.dev.analysis.application.service.ipinfo;
 
 import com.dev.analysis.domain.ipinfo.IpInfo;
 import com.dev.analysis.domain.accesslog.TopIp;
 import com.dev.analysis.repository.IpInfoRepository;
-import com.dev.analysis.service.ipinfo.dto.IpInfoData;
+import com.dev.analysis.application.service.ipinfo.dto.IpInfoData;
 import com.dev.analysis.support.error.ApiException;
 import com.dev.analysis.support.error.ErrorType;
 import lombok.RequiredArgsConstructor;
@@ -43,5 +43,9 @@ public class IpInfoService {
                 .toList();
 
         ipInfoRepository.saveAll(ipInfos);
+    }
+
+    public List<IpInfo> findIpInfos(Long analysisId) {
+        return ipInfoRepository.findByAnalysisId(analysisId);
     }
 }

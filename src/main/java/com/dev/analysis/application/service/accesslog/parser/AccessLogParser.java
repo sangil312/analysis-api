@@ -1,11 +1,11 @@
-package com.dev.analysis.parser;
+package com.dev.analysis.application.service.accesslog.parser;
 
-import com.dev.analysis.service.accesslog.AnalysisValidator;
+import com.dev.analysis.application.service.accesslog.AnalysisValidator;
 import com.dev.analysis.support.error.ApiException;
 import com.dev.analysis.support.error.ErrorType;
 import com.opencsv.bean.CsvToBean;
 import com.opencsv.exceptions.CsvException;
-import com.dev.analysis.service.accesslog.dto.AccessLogParseResult;
+import com.dev.analysis.application.service.accesslog.dto.AccessLogParseResult;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
@@ -30,7 +30,7 @@ public class AccessLogParser {
     public AccessLogParseResult parse(MultipartFile file) {
         log.info("csv 분석 시작: 파일명: {}, 파일 사이즈: {}byte", file.getOriginalFilename(), file.getSize());
 
-        AccessLogParseResult parseResult = new AccessLogParseResult(5);
+        AccessLogParseResult parseResult = new AccessLogParseResult();
 
         try (BufferedReader reader = new BufferedReader(
                 new InputStreamReader(file.getInputStream(), StandardCharsets.UTF_8))

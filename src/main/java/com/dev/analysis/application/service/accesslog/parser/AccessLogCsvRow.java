@@ -1,4 +1,4 @@
-package com.dev.analysis.parser;
+package com.dev.analysis.application.service.accesslog.parser;
 
 import com.dev.analysis.support.converter.HttpStatusConverter;
 import com.dev.analysis.support.converter.NonBlankConverter;

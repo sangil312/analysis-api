@@ -1,4 +1,4 @@
-package com.dev.analysis.controller.v1.response;
+package com.dev.analysis.controller.response;
 
 import com.dev.analysis.support.error.ErrorResponse;
 import com.dev.analysis.support.error.ErrorType;

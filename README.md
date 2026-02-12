@@ -27,7 +27,7 @@ java -jar build/libs/analysis-0.0.1-SNAPSHOT.jar
 ```
 
 ## API 샘플
-### 1. 분석 생성
+### 분석 생성 API
 - `POST /analysis`
 - `multipart/form-data`로 `file` 업로드
 
@@ -44,7 +44,6 @@ curl.exe -X POST "http://localhost:8080/analysis" `
 ```
 
 #### 응답 예시
-
 ```json
 {
   "resultType": "SUCCESS",
@@ -52,5 +51,65 @@ curl.exe -X POST "http://localhost:8080/analysis" `
     "analysisId": 1
   },
   "error": null
+}
+```
+
+### 분석 결과 조회 API
+- `GET/analysis/{analysisId}`
+
+#### 응답 예시
+```json
+{
+  "resultType": "SUCCESS",
+  "data": {
+    "totalRequestCount": 1000,
+    "successRatio": 63.3,
+    "redirectRatio": 2.7,
+    "clientErrorRatio": 32.6,
+    "serverErrorRatio": 1.4,
+    "parseError": {
+      "count": 0,
+      "errorSamples": []
+    },
+    "topRequestUris": [
+      {
+        "path": "/event/banner/mir2/popup",
+        "count": 147
+      },
+      ...
+    ],
+    "topStatusCodes": [
+      {
+        "statusCode": 200,
+        "count": 630
+      },
+      ...
+    ],
+    "topIps": [
+      {
+        "ip": "120.242.23.238",
+        "count": 114,
+        "country": "China",
+        "region": "Asia",
+        "asn": "AS9808",
+        "isp": "China Mobile Communications Group Co., Ltd."
+      },
+      ...
+    ]
+  },
+  "error": null
+}
+```
+
+### 공통 예외 응답
+#### 응답 예시
+```json
+{
+    "resultType": "ERROR",
+    "data": null,
+    "error": {
+        "statusCode": 404,
+        "message": "요청 데이터가 존재하지 않습니다."
+    }
 }
 ```
