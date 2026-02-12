@@ -1,4 +1,4 @@
-package com.dev.analysis.controller.accesslog.response;
+package com.dev.analysis.api.controller.v1.accesslog.response;
 
 public record CreateAnalysisResponse(
     Long analysisId

@@ -1,6 +1,8 @@
-package com.dev.analysis.support.error;
+package com.dev.analysis.api.controller;
 
-import com.dev.analysis.controller.response.ApiResponse;
+import com.dev.analysis.api.controller.response.Response;
+import com.dev.analysis.support.error.ApiException;
+import com.dev.analysis.support.error.ErrorType;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -12,13 +14,13 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 public class GlobalExceptionHandler {
 
     @ExceptionHandler(Exception.class)
-    public ResponseEntity<ApiResponse<Object>> handleException(Exception e) {
+    public ResponseEntity<Response<Object>> handleException(Exception e) {
         log.error("Exception: {}", e.getMessage(), e);
-        return ResponseEntity.internalServerError().body(ApiResponse.error(ErrorType.SERVER_ERROR));
+        return ResponseEntity.internalServerError().body(Response.error(ErrorType.SERVER_ERROR));
     }
 
     @ExceptionHandler(ApiException.class)
-    public ResponseEntity<ApiResponse<Object>> handleApiException(ApiException e) {
+    public ResponseEntity<Response<Object>> handleApiException(ApiException e) {
         ErrorType errorType = e.getErrorType();
 
         switch (errorType.getLogLevel()) {
@@ -26,6 +28,6 @@ public class GlobalExceptionHandler {
             case WARN -> log.warn("ApiException: {}", e.getMessage(), e);
             default -> log.info("ApiException: {}", e.getMessage(), e);
         }
-        return ResponseEntity.status(errorType.getHttpStatus()).body(ApiResponse.error(errorType));
+        return ResponseEntity.status(errorType.getHttpStatus()).body(Response.error(errorType));
     }
 }

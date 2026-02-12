@@ -1,4 +1,4 @@
-package com.dev.analysis.controller.accesslog.response;
+package com.dev.analysis.api.controller.v1.accesslog.response;
 
 import com.dev.analysis.application.usecase.dto.AccessLogAnalysisResult;
 import com.dev.analysis.application.usecase.dto.TopIpResult;

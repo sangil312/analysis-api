@@ -1,4 +1,4 @@
-package com.dev.analysis.controller.response;
+package com.dev.analysis.api.controller.response;
 
 public enum ResultType {
     SUCCESS,
