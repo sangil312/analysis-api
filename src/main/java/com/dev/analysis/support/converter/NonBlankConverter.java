@@ -8,7 +8,7 @@ public class NonBlankConverter extends AbstractBeanField<String, String> {
     @Override
     protected String convert(String value) throws CsvDataTypeMismatchException {
         if (!StringUtils.hasText(value)) {
-            throw new CsvDataTypeMismatchException(value, String.class, "필수 값이 비어 있습니다.");
+            throw new CsvDataTypeMismatchException();
         }
         return value;
     }

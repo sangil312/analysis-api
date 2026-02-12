@@ -19,11 +19,11 @@ public class AccessLogManager {
 
     public AccessLogAnalysis createAccessLogAnalysis(AccessLogParseResult parseResult) {
         AccessLogAnalysis accessLogAnalysis = AccessLogAnalysis.create(
-                parseResult.getTotalRequests(),
-                parseResult.getSuccess2xx(),
-                parseResult.getRedirect3xx(),
-                parseResult.getClient4xx(),
-                parseResult.getServer5xx(),
+                parseResult.getTotalRequestCount(),
+                parseResult.getSuccess2xxCount(),
+                parseResult.getRedirect3xxCount(),
+                parseResult.getClient4xxCount(),
+                parseResult.getServer5xxCount(),
                 ParseError.of(parseResult.getParseErrorCount(), parseResult.getParseErrorSamples()),
                 TopIp.of(parseResult.getIpCount(), 10),
                 TopRequestUri.of(parseResult.getRequestUriCount(), 10),
