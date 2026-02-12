@@ -9,13 +9,13 @@ public class HttpStatusConverter extends AbstractBeanField<Integer, String> {
     @Override
     protected Integer convert(String value) throws CsvDataTypeMismatchException {
         if (!StringUtils.hasText(value)) {
-            throw new CsvDataTypeMismatchException(value, String.class, "필수 값이 비어 있습니다.");
+            throw new CsvDataTypeMismatchException();
         }
         try {
             HttpStatus httpStatus = HttpStatus.valueOf(Integer.parseInt(value));
             return httpStatus.value();
         } catch (IllegalArgumentException ex) {
-            throw new CsvDataTypeMismatchException(value, String.class, "컬럼 값이 올바르지 않습니다. HttpStatus: " + value);
+            throw new CsvDataTypeMismatchException();
         }
     }
 }
